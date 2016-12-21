@@ -21,12 +21,16 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 /***
  * @author drakeet
  */
 public abstract class ItemViewProvider<T, V extends ViewHolder> {
 
     /* internal */ int position;
+    /* internal */ List<?> items ;
+
 
     /* @formatter:off */
 
@@ -47,5 +51,15 @@ public abstract class ItemViewProvider<T, V extends ViewHolder> {
      */
     protected final int getPosition() {
         return position;
+    }
+
+    /**
+     * 获取所在的数据列表，以便用来判断当前所处的“环境”，
+     * 以便做一些特殊的操作，比如位置不同显示的ui不同（分割线）
+     * @return 数据列表items
+     * since v2.3.1
+     */
+    protected List<?> getItems() {
+        return items;
     }
 }
